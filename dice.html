@@ -18,12 +18,17 @@
             </li>
         </ul>
         <div id = 'roll-tab' class = 'showTab'>
-            <h1>Rolling Dice</h1>
+            <h1 id = 'Title'>Rolling Dice</h1>
             <h1 id = 'Dice'>
             </h1>
-            <button type="button" id = diceRoll>
-                Roll Dice
-            </button>
+            <text id = 'Sum'>
+                Sum: 0
+            </text>
+            <br>
+            <div class="input-group mb-3 px-2">
+                <input type="text" class="form-control" placeholder="1d6" aria-label="diceRoll" aria-describedby="diceRoll" id="diceType">
+                <button class="btn btn-outline-secondary" type="button" id="diceRoll">Roll Dice</button>
+            </div>
         </div>
         <div id = 'expected-tab' class = 'hideTab'>
             <h1>Expected Value</h1>
