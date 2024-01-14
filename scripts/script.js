@@ -25,9 +25,13 @@ function changeTab(tab){
     if(tab == 1){
         document.getElementById('tab1').classList.add('active');
         document.getElementById('tab2').classList.remove('active');
+        document.getElementById('roll-tab').classList.remove('hideTab');
+        document.getElementById('expected-tab').classList.add('hideTab');
     } else {
         document.getElementById('tab2').classList.add('active');
         document.getElementById('tab1').classList.remove('active');
+        document.getElementById('roll-tab').classList.add('hideTab');
+        document.getElementById('expected-tab').classList.remove('hideTab');
     }
 }
 
