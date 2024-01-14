@@ -1,0 +1,10 @@
+{
+    "manifest_version": 3,
+    "name": "Roll Dice",
+    "version": "0.0.2",
+    "description": "A basic extension for rolling dice",
+    "action": {
+        "default_popup": "dice.html",
+        "default_icon": "Icon.png"
+    }
+}
