@@ -49,11 +49,11 @@ async function roll(){
     let diceShape = DieSides;
     if(diceType.length != 0){
         if(diceType.match(re2) != null){
-            numberOfDice = clamp(diceType.match(re2), 1, 5);
+            numberOfDice = clamp(diceType.match(re2), 1, 20);
         } else if (diceType.match(re) != null){
             // document.getElementById('Title').innerHTML = diceType.split(/\+?d\+?/gi)[0] + "|" +diceType.split(/\+?d\+?/gi)[1]
             let splitted = diceType.split(/\+?d\+?/gi);
-            numberOfDice = clamp(splitted[0], 1, 5);
+            numberOfDice = clamp(splitted[0], 1, 20);
             pips = clamp(splitted[1], 1, 20);
         }
         document.getElementById("diceType").value = numberOfDice +'d'+pips;
@@ -64,20 +64,26 @@ async function roll(){
     dice = diceShape[Math.floor(Math.random()*pips)];
     for(let i = 0; i < 10; i++){
         await new Promise(resolve => setTimeout(resolve, 100));
-        dice = diceShape[Math.floor(Math.random()*pips)];
-        for(let j = 1; j < numberOfDice; j++){
+        dice = "";
+        for(let j = 0; j < numberOfDice; j++){
             dice += diceShape[Math.floor(Math.random()*pips)];
+            if((j+1)%5==0){
+                dice+='<br>';
+            }
         }
         document.getElementById('Dice').innerHTML = dice;
     }
     await new Promise(resolve => setTimeout(resolve, 100));
     diceValue = Math.floor(Math.random()*pips);
-    dice = diceShape[diceValue];
+    dice = "";
     sum = diceValue;
-    for(let j = 1; j < numberOfDice; j++){
+    for(let j = 0; j < numberOfDice; j++){
         diceValue = Math.floor(Math.random()*pips);
         dice += diceShape[diceValue];
         sum += (diceValue+1);
+        if((j+1)%5==0){
+            dice+='<br>';
+        }
     }
     document.getElementById('Dice').innerHTML = dice;
     // document.getElementById('Dice').insertAdjacentHTML("beforeend", `<br>Sum: ${sum}`)
