@@ -85,9 +85,8 @@ async function roll(){
         document.getElementById('Dice').innerHTML = dice;
     }
     await new Promise(resolve => setTimeout(resolve, 100));
-    diceValue = Math.floor(Math.random()*pips);
     dice = "";
-    sum = diceValue;
+    sum = 0;
     for(let j = 0; j < numberOfDice; j++){
         diceValue = Math.floor(Math.random()*pips);
         dice += diceShape[diceValue];
@@ -98,7 +97,7 @@ async function roll(){
     }
     document.getElementById('Dice').innerHTML = dice;
     // document.getElementById('Dice').insertAdjacentHTML("beforeend", `<br>Sum: ${sum}`)
-    document.getElementById('Sum').innerHTML = (`Sum: ${sum + 1}`)
+    document.getElementById('Sum').innerHTML = (`Sum: ${sum}`)
 }
 
 function changeTab(tab){
