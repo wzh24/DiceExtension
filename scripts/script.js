@@ -15,6 +15,17 @@ const sixSided = Object.freeze({
     4: '⚄',
     5: '⚅'
 })
+
+let e = {};
+for(let i = 1; i <= 20; i++){
+    let valueForIPips = 0;
+    for(let j = 1; j <= i; j++){
+        valueForIPips += j;
+    }
+    e[i] = (valueForIPips/i);
+}
+const expectedValue = Object.freeze(e);
+
 const DieSides = Object.freeze({
     0: "<img src='diceImages/1.svg' alt='1 image' height='15%' width='15%'/>",
     1: "<img src='diceImages/2.svg' alt='1 image' height='15%' width='15%'/>", 
@@ -56,8 +67,8 @@ async function roll(){
             numberOfDice = clamp(splitted[0], 1, 20);
             pips = clamp(splitted[1], 1, 20);
         }
-        document.getElementById("diceType").value = numberOfDice +'d'+pips;
     }
+    document.getElementById("diceType").value = numberOfDice +'d'+pips;
     if(pips <= 6){
         diceShape = sixSided;
     }
@@ -106,12 +117,31 @@ function changeTab(tab){
     }
 }
 
-function display(){
-    alert("hi");
+function findExpected(){
+    
+    const re = /^[0-9]+\+?d\+?[0-9]+$/gi;
+    const re2 = /^[0-9]+$/gi;
+    let diceType = document.getElementById("diceTypeExpected").value; 
+    let numberOfDice = 1;
+    let pips = 6;
+    if(diceType.length != 0){
+        if(diceType.match(re2) != null){
+            numberOfDice = clamp(diceType.match(re2), 1, 20);
+        } else if (diceType.match(re) != null){
+            // document.getElementById('Title').innerHTML = diceType.split(/\+?d\+?/gi)[0] + "|" +diceType.split(/\+?d\+?/gi)[1]
+            let splitted = diceType.split(/\+?d\+?/gi);
+            numberOfDice = clamp(splitted[0], 1, 20);
+            pips = clamp(splitted[1], 1, 20);
+        }
+    }
+    document.getElementById("diceType").value = numberOfDice +'d'+pips;
+    document.getElementById('Ex').innerHTML = `result: ${numberOfDice*expectedValue[pips]}`;
+
 }
 
 document.getElementById('Dice').innerHTML = dice;
 document.getElementById('diceRoll').addEventListener('click', roll);
+document.getElementById('diceExpected').addEventListener('click', findExpected);
 document.getElementById('tab1').addEventListener('click', ()=>changeTab(1));
 document.getElementById('tab2').addEventListener('click', ()=>changeTab(2));
 
