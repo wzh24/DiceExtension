@@ -4,3 +4,8 @@ html{
 .hideTab{
     display: none;
 }
+
+.DiceImages{
+    height: 100%;
+    font-size: 300%;
+}
